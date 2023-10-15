@@ -1,3 +1,41 @@
+<?php
+
+include('connection.php');
+
+$errors = [];
+
+if (isset($_POST['login'])) {
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+    $sql = "SELECT * FROM sampletable WHERE email = '$email'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+
+        $row = $result->fetch_assoc();
+        if (password_verify($password, $row['password'])) {
+            header("Location: userprofile.php");
+            exit();
+        } else {
+            $errors[] = "Incorrect password. Please try again.";
+        }
+    } else {
+        $errors[] = "User not found. Please check your email or register.";
+    }
+
+    foreach ($errors as $error) {
+        echo $error . "<br>";
+    }
+}
+
+$conn->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
