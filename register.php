@@ -1,35 +1,47 @@
 <?php
-include 'connection.php';
 
-if(isset($_POST['submit'])){
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
+include('connection.php');
+
+$errors = [];
+
+if (isset($_POST['submit'])) {
+    $fName = $_POST['firstName'];
+    $lName = $_POST['lastName'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $cpassword = $_POST['confirmPassword'];
 
-    // Create an SQL statement with placeholders, excluding 'id'.
-    $sql = "INSERT INTO `user` (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
 
-    $stmt = $con->prepare($sql);
+    $fName = htmlspecialchars($fName);
+    $lName = htmlspecialchars($lName);
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-    if ($stmt) {
-        // Bind the parameters and their types, excluding 'id'.
-        $stmt->bind_param('ssss', $firstName, $lastName, $email, $password);
-
-        if ($stmt->execute()) {
-            echo "Data Inserted Successfully";
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-        $stmt->close();
-    } else {
-        echo "Error: " . $con->error;
+    if ($password !== $cpassword) {
+        $errors[] = "Password and Confirm Password do not match.";
     }
 
-    // Close your database connection when you're done.
-    $con->close();
+    if (empty($errors)) {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO sampletable (first_name, last_name, email, password) 
+                VALUES ('$fName', '$lName', '$email', '$hashedPassword')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Profile created successfully";
+            header("Location: userprofile.php");
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    } else {
+        foreach ($errors as $error) {
+            echo $error . "<br>";
+        }
+    }
 }
+
+$conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,15 +59,12 @@ if(isset($_POST['submit'])){
     <div class="navbar">
     <ul>
             <li><a href="home.php">Home</a></li>
-<<<<<<< HEAD
             <li><a href="aboutUsNoLogin.php">About Us</a></li>
-=======
             <li><a href="myProfile.php">My Profile</a></li>
             <li><a href="#">Online Bidding</a></li>
             <li><a href="#">Auctioner</a></li>
             <li><a href="aboutUs.php">About Us</a></li>
             <li><a href="contactUs.php">Contact Us</a></li>
->>>>>>> c5491d50dee519ca4f407fe583ed0b9f11afa6b6
         </ul>
     </div>
 
@@ -85,12 +94,11 @@ if(isset($_POST['submit'])){
 
             <a href="login.php" class="link">Already have an account?</a><br>
 
-<<<<<<< HEAD
+
             <button class="register_btn">CREATE ACCOUNT</button>
 
-=======
             <button type="submit" name="submit" class="register_btn">CREATE ACCOUNT</button>
->>>>>>> 948e5a012b03a4ef9231a0a984a1ec08b9cb5fb8
+
         </div>
     </form>
 
