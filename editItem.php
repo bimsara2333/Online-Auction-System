@@ -23,7 +23,7 @@
 </header>
 
 <div class="centered-form">
-    <h2>Edit User Details</h2>
+    <h2>Edit Item Details</h2>
     <br>
     <form action="#" method="post">
     <?php
