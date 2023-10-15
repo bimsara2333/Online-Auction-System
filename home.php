@@ -16,7 +16,7 @@
 <div class="navbar">
         <ul>
             <li><a href="home.php">Home</a></li>
-            <li><a href="addItem.php">About Us</a></li>
+            <li><a href="aboutUsNologin.php">About Us</a></li>
         </ul>
     </div>
     </header>
