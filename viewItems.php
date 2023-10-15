@@ -27,6 +27,7 @@
 <table id="data-table">
     <thead>
         <tr>
+            <th>Item ID</th>
             <th>Item Name</th>
             <th>Item Type</th>
             <th>Minimum Bid</th>
@@ -39,7 +40,7 @@
     </thead>
     <tbody>
     <?php
-        $con = mysqli_connect('localhost', 'root', '', 'onlinebiding'); // Replace with your database connection details
+        $con = mysqli_connect('localhost', 'root', '', 'test'); // Replace with your database connection details
 
         if (!$con) {
             die("Connection failed: " . mysqli_connect_error());
@@ -48,9 +49,11 @@
         $sql = "SELECT * FROM item"; // Replace 'items' with the actual table name
         $result = mysqli_query($con, $sql);
 
-        if ($result) {
+       if ($result) {
             while ($row = mysqli_fetch_assoc($result)) {
+                $iid = $row['iid'];  // Add this line to retrieve the value of $iid
                 echo "<tr>";
+                echo "<td>" . $iid . "</td>";
                 echo "<td>" . $row['iName'] . "</td>"; // Change column names accordingly
                 echo "<td>" . $row['iType'] . "</td>";
                 echo "<td>" . $row['mBid'] . "</td>";
@@ -58,7 +61,7 @@
                 echo "<td>" . $row['yName'] . "</td>";
                 echo "<td>" . $row['yEmail'] . "</td>";
                 echo "<td>" . $row['info'] . "</td>";
-                echo '<td><a href="editItem.php?iid=' . $iid . '">Edit</a> | <a href="deleteItem.php?iid=' . $row['iid'] . '" class="delete-btn">Delete</a></td>';
+                echo '<td><a href="editItem.php?iid=' . $iid . '">Edit</a> | <a href="deleteItem.php?iid=' . $iid . '" class="delete-btn">Delete</a></td>';
                 echo "</tr>";
             }
         } else {
