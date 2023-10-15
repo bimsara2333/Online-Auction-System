@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
     $fName = $_POST['firstName'];
     $lName = $_POST['lastName'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $passwords = $_POST['password'];
     $cpassword = $_POST['confirmPassword'];
 
 
@@ -16,21 +16,21 @@ if (isset($_POST['submit'])) {
     $lName = htmlspecialchars($lName);
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-    if ($password !== $cpassword) {
+    if ($passwords !== $cpassword) {
         $errors[] = "Password and Confirm Password do not match.";
     }
 
     if (empty($errors)) {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $hashedPassword = password_hash($passwords, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO sampletable (first_name, last_name, email, password) 
+        $sql = "INSERT INTO user (firstName, lastName, email, password) 
                 VALUES ('$fName', '$lName', '$email', '$hashedPassword')";
 
-        if ($conn->query($sql) === TRUE) {
+        if ($con->query($sql) === TRUE) {
             echo "Profile created successfully";
-            header("Location: userprofile.php");
+            header("Location: afterLogin.php");
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "Error: " . $sql . "<br>" . $con->error;
         }
     } else {
         foreach ($errors as $error) {
@@ -39,7 +39,6 @@ if (isset($_POST['submit'])) {
     }
 }
 
-$conn->close();
 ?>
 
 
@@ -94,10 +93,7 @@ $conn->close();
 
             <a href="login.php" class="link">Already have an account?</a><br>
 
-
-            <button class="register_btn">CREATE ACCOUNT</button>
-
-            <button type="submit" name="submit" class="register_btn">CREATE ACCOUNT</button>
+            <button type="submit" name="submit" class="register_btn">Create Account</button>
 
         </div>
     </form>

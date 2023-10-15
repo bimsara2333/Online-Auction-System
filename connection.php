@@ -1,8 +1,8 @@
 <?php
 
-$con = new mysqli('localhost', 'root', '', 'onlinebiding');
+$con = new mysqli('localhost', 'root', '', 'test');
 if($con){
-    echo "Connection Successfull";
+    
 }else{
     die(mysqli_error($con));
 }

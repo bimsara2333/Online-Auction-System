@@ -4,35 +4,26 @@ include('connection.php');
 
 $errors = [];
 
-if (isset($_POST['login'])) {
-
+if (isset($_POST['submit'])) {
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = $_POST['passwd'];
 
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-
-    $sql = "SELECT * FROM sampletable WHERE email = '$email'";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM user WHERE email=? AND password=?";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "ss", $email, $password);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
     if ($result->num_rows > 0) {
-
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-            header("Location: userprofile.php");
-            exit();
-        } else {
-            $errors[] = "Incorrect password. Please try again.";
-        }
+        $row = mysqli_fetch_array($result);
+        header('location: afterLogin.php');
     } else {
-        $errors[] = "User not found. Please check your email or register.";
+        echo "<script>alert('The E-mail and the password do not match.')</script>";
     }
 
-    foreach ($errors as $error) {
-        echo $error . "<br>";
-    }
+    mysqli_stmt_close($stmt);
 }
 
-$conn->close();
 ?>
 
 
@@ -61,15 +52,15 @@ $conn->close();
 
     <form action="#">
         <div class="register">
-            <label for="firstName">E-mail</label>
-            <input type="text"><br>
+            <label for="email">E-mail</label>
+            <input type="text" name="email"><br>
 
-            <label for="firstName">Password</label>
-            <input type="text">
+            <label for="passwd">Password</label>
+            <input type="text" name="passwd">
 
             <a href="register.php" class="link">Do not have an account?</a><br>
 
-            <button class="register_btn">LOGIN</button>
+            <button class="register_btn" type="submit" name="submit">Login</button>
 
         </div>
     </form>
