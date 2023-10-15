@@ -1,6 +1,6 @@
 <?php
 
-$con = new mysqli('localhost', 'root', '', 'project001');
+$con = new mysqli('localhost', 'root', '', 'onlinebiding');
 if($con){
     echo "Connection Successfull";
 }else{
