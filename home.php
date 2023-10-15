@@ -8,7 +8,7 @@
 </head>
 <body>
     <header id="header1">
-    <h1 class="logo">E-Auction.</h1>
+    <h1 class="logo">E-Auction</h1>
 <div class="navbtn">
      <button id="b1">Login</button>
      <button id="b2">Register</button>
@@ -18,8 +18,8 @@
             <li><a href="home.php">Home</a></li>
             <li><a href="viewItems.php">Online Bidding</a></li>
             <li><a href="viewAuctioner.php">Auctioner</a></li>
-            <li><a href="aboutUs.html">About Us</a></li>
-            <li><a href="contactUs.html">Contact Us</a></li> 
+            <li><a href="aboutUs.php">About Us</a></li>
+            <li><a href="contactUs.php">Contact Us</a></li> 
         </ul>
     </div>
     </header>

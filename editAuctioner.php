@@ -15,8 +15,8 @@
             <li><a href="home.php">Home</a></li>
             <li><a href="viewItems.php">Online Bidding</a></li>
             <li><a href="viewItems.php">Auctioner</a></li>
-            <li><a href="aboutUs.html">About Us</a></li>
-            <li><a href="contactUs.html">Contact Us</a></li>
+            <li><a href="aboutUs.php">About Us</a></li>
+            <li><a href="contactUs.php">Contact Us</a></li>
         </ul>
     </div>
 </header>
