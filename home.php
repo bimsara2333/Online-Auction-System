@@ -10,16 +10,13 @@
     <header id="header1">
     <h1 class="logo">E-Auction</h1>
 <div class="navbtn">
-<a href="login.php"><button id="b1">Login</button></a>
-<a href="register.php"><button id="b2">Register</button></a>
+    <a href="login.php"><button id="b1">Login</button></a>
+    <a href="register.php"><button id="b2">Register</button></a>
 </div>
 <div class="navbar">
         <ul>
             <li><a href="home.php">Home</a></li>
-            <li><a href="viewItems.php">Online Bidding</a></li>
-            <li><a href="viewAuctioner.php">Auctioner</a></li>
-            <li><a href="aboutUs.php">About Us</a></li>
-            <li><a href="contactUs.php">Contact Us</a></li> 
+            <li><a href="aboutUsNoLogin.php">About Us</a></li>
         </ul>
     </div>
     </header>
@@ -36,8 +33,7 @@
             <a href="https://play.google.com/store/games?hl=en&gl=US"><img src="images/android.png" height="50" width="160" id="cvr"></a>
             <a href="https://www.apple.com/app-store/"><img src="images/apple.png" height="50" width="160" id="cvr"></a>
         </div>
-    </div>
-    
+    </div> 
     
     <footer>
         <div class="footer-content">

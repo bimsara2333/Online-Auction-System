@@ -14,10 +14,7 @@
     <div class="navbar">
         <ul>
             <li><a href="home.php">Home</a></li>
-            <li><a href="#">Online Bidding</a></li>
-            <li><a href="#">Auctioner</a></li>
-            <li><a href="aboutUs.php">About Us</a></li>
-            <li><a href="contactUs.php">Contact Us</a></li>
+            <li><a href="aboutUsNoLogin.php">About Us</a></li>
         </ul>
     </div>
 
