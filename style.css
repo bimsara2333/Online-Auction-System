@@ -62,12 +62,13 @@ h2{
 
 label {
     display: block;
+    justify-content: center;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-input[type="text"] {
-    width: 100%;
+input {
+    width: 95%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -142,10 +143,23 @@ footer {
     padding-top: 20px;
 }
 
+.container {
+    margin-left: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
 
+.contact {
+    flex: 1;
+    padding-right: 20px;
+}
 
-.contact{
-    margin-left: 90px;
+.contactusimg {
+    flex: 1;
+    width: 70%;
+    margin-left: 120px;
 }
 
 section{
@@ -175,3 +189,4 @@ section{
     border-radius: 5px;
     margin-top: 20px;
 }
+

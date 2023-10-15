@@ -11,6 +11,16 @@
 <body>
     <h1 class="logo">E-Auction.</h1>
 
+    <div class="navbar">
+        <ul>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="#">Online Bidding</a></li>
+            <li><a href="#">Auctioner</a></li>
+            <li><a href="aboutUs.php">About Us</a></li>
+            <li><a href="contactUs.php">Contact Us</a></li>
+        </ul>
+    </div>
+
     <h2>LOGIN</h2>
     <br>
 
@@ -25,7 +35,6 @@
             <a href="register.php" class="link">Do not have an account?</a><br>
 
             <button class="register_btn">LOGIN</button>
-
 
         </div>
     </form>
