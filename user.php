@@ -2,28 +2,33 @@
 include 'connection.php';
 
 if(isset($_POST['submit'])){
-    $id = $_POST['uid'];
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
 
-    $sql = "INSERT INTO `user` (uid,firstName, lastName, email, password) VALUES (?,?, ?, ?, ?)";
-    $stmt = $con->prepare($sql);
-    
-    if ($stmt) {
-        $stmt->bind_param($uid, $firstName, $lastName, $email, $password);
-        if ($stmt->execute()) {
-            echo "Data Inserted Successfully";
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-        $stmt->close();
+    if ($password !== $confirmPassword) {
+        echo "Password and Confirm Password do not match.";
     } else {
-        echo "Error: " . $con->error;
+        $sql = "INSERT INTO `user` (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
+        $stmt = $con->prepare($sql);
+
+        if ($stmt) {
+            $stmt->bind_param('ssss', $firstName, $lastName, $email, $password);
+            if ($stmt->execute()) {
+                echo "Data Inserted Successfully";
+            } else {
+                echo "Error: " . $stmt->error;
+            }
+            $stmt->close();
+        } else {
+            echo "Error: " . $con->error;
+        }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
