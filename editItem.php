@@ -27,59 +27,35 @@
     <br>
     <form action="#" method="post">
     <?php
-    $con = mysqli_connect('localhost', 'root', '', 'onlinebiding');
-    if (!$con) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
+$con = mysqli_connect('localhost', 'root', '', 'onlinebiding');
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-    if (isset($_POST['update'])) {
-        // Updated variable names
-        $item_id = $_POST['item_id'];  // Change $iid to $item_id
-        $iName = $_POST['iName'];
-        $iType = $_POST['iType'];
-        $mBid = $_POST['mBid'];
-        $date = $_POST['date'];
-        $yName = $_POST['yName'];
-        $yEmail = $_POST['yEmail'];
-        $info = $_POST['info'];
+if (isset($_GET['iid'])) {
+    $item_id = $_GET['iid'];
+    $sql = "SELECT * FROM item WHERE iid = $iid";
+    $result = mysqli_query($con, $sql);
 
-        // Update the user's information in the database
-        $sql = "UPDATE item SET itemName = '$iName', itemType = '$iType', minimumBid = '$mBid', closingDate = '$date', name = '$yName', email = '$yEmail', message = '$info' WHERE iid = $item_id"; // Added WHERE clause
-        $result = mysqli_query($con, $sql);
-
-        if ($result) {
-            echo "Item information has been updated.";
-        } else {
-            echo "Error updating the item: " . mysqli_error($con);
-        }
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $iName = $row['iName'];
+        $iType = $row['iType'];
+        $mBid = $row['mBid'];
+        $date = $row['date'];
+        $yName = $row['yName'];
+        $yEmail = $row['yEmail'];
+        $info = $row['info'];
     } else {
-        // Fetch item data based on item ID
-        if (isset($_GET['item_id'])) {
-            $item_id = $_GET['item_id'];
-            $sql = "SELECT * FROM item WHERE iid = $item_id";
-            $result = mysqli_query($con, $sql);
-
-            if ($result && mysqli_num_rows($result) > 0) {
-                $row = mysqli_fetch_assoc($result);
-                $iName = $row['itemName'];
-                $iType = $row['itemType'];
-                $mBid = $row['minimumBid'];
-                $date = $row['closingDate'];
-                $yName = $row['name'];
-                $yEmail = $row['email'];
-                $info = $row['message'];
-
-                // Rest of your code remains the same
-            } else {
-                echo "Item not found.";
-            }
-        } else {
-            echo "Item ID is not set in the URL.";
-        }
+        echo "Item not found.";
     }
+} else {
+    echo "Item ID is not set in the URL.";
+}
 
-    mysqli_close($con);
-    ?>
+mysqli_close($con);
+?>
+
     </form>
 </div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

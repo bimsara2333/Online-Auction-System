@@ -2,13 +2,13 @@
 include 'connection.php';
 
 if (isset($_POST['submit'])) {
-    $iName = $_POST['itemName'];
-    $iType = $_POST['itemType'];
-    $mBid = $_POST['minimumBid'];
-    $date = $_POST['closingDate'];
-    $yName = $_POST['name'];
-    $yEmail = $_POST['email'];
-    $info = $_POST['message'];
+    $iName = $_POST['iName'];
+    $iType = $_POST['iType'];
+    $mBid = $_POST['mBid'];
+    $date = $_POST['date'];
+    $yName = $_POST['yName'];
+    $yEmail = $_POST['yEmail'];
+    $info = $_POST['info'];
 
     // Create an SQL statement with placeholders, excluding 'id'.
     $sql = "INSERT INTO `item` (iName, iType, mBid, date, yName, yEmail, info) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -63,25 +63,25 @@ if (isset($_POST['submit'])) {
     <br>
     <form method="post">
         <label for="itemName">Item Name:</label>
-        <input type="text" id="f1" name="itemName" placeholder="Enter the item name" required>
+        <input type="text" id="f1" name="iName" placeholder="Enter the item name" required>
 
         <label for="itemType">Item Type:</label>
-        <input type="text" id="f1" name="itemType" placeholder="Enter the item type" required>
+        <input type="text" id="f1" name="iType" placeholder="Enter the item type" required>
 
         <label for="minimumBid">Minimum Bid:</label>
-        <input type="number" id="minimumBid" name="minimumBid" placeholder="Enter the minimum bid" required>
+        <input type="number" id="minimumBid" name="mBid" placeholder="Enter the minimum bid" required>
 
         <label for="closingDate">Closing Date:</label>
-        <input type="date" id="closingDate" name="closingDate" required>
+        <input type="date" id="closingDate" name="date" required>
 
         <label for="name">Your Name:</label>
-        <input type="text" id="f1" name="name" placeholder="Enter your name" required>
+        <input type="text" id="f1" name="yName" placeholder="Enter your name" required>
 
         <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <input type="email" id="email" name="yEmail" placeholder="Enter your email" required>
 
         <label for="message">Additional Information:</label>
-        <textarea id="message" name="message" placeholder="Enter additional information" required></textarea>
+        <textarea id="message" name="info" placeholder="Enter additional information" required></textarea>
 
         <button type="submit" name="submit">Place Bid</button>
     </form>

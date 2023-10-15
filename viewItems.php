@@ -58,7 +58,7 @@
                 echo "<td>" . $row['yName'] . "</td>";
                 echo "<td>" . $row['yEmail'] . "</td>";
                 echo "<td>" . $row['info'] . "</td>";
-                echo "<td><a href='editItem.php?id=" . $row['iid'] . "' class='edit-btn'>Edit</a> | <a href='deleteItem.php?id=" . $row['iid'] . "' class='delete-btn'>Delete</a></td>";
+                echo '<td><a href="editItem.php?iid=' . $iid . '">Edit</a> | <a href="deleteItem.php?iid=' . $row['iid'] . '" class="delete-btn">Delete</a></td>';
                 echo "</tr>";
             }
         } else {
