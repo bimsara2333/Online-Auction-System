@@ -1,3 +1,36 @@
+<?php
+include 'connection.php';
+
+if(isset($_POST['submit'])){
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Create an SQL statement with placeholders, excluding 'id'.
+    $sql = "INSERT INTO `user` (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
+
+    $stmt = $con->prepare($sql);
+
+    if ($stmt) {
+        // Bind the parameters and their types, excluding 'id'.
+        $stmt->bind_param('ssss', $firstName, $lastName, $email, $password);
+
+        if ($stmt->execute()) {
+            echo "Data Inserted Successfully";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+        $stmt->close();
+    } else {
+        echo "Error: " . $con->error;
+    }
+
+    // Close your database connection when you're done.
+    $con->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,36 +47,50 @@
     <div class="navbar">
     <ul>
             <li><a href="home.php">Home</a></li>
+<<<<<<< HEAD
             <li><a href="aboutUsNoLogin.php">About Us</a></li>
+=======
+            <li><a href="myProfile.php">My Profile</a></li>
+            <li><a href="#">Online Bidding</a></li>
+            <li><a href="#">Auctioner</a></li>
+            <li><a href="aboutUs.php">About Us</a></li>
+            <li><a href="contactUs.php">Contact Us</a></li>
+>>>>>>> c5491d50dee519ca4f407fe583ed0b9f11afa6b6
         </ul>
     </div>
 
     <h2>Create an Account</h2>
     <br>
 
-    <form action="#">
+    <form method="post" >
         <div class="register">
+             <!-- <label for="firstName">ID</label>
+            <input type="text" name="id"><br> -->
+
             <label for="firstName">First Name</label>
-            <input type="text"><br>
+            <input type="text" name="firstName"><br>
 
-            <label for="firstName">Last Name</label>
-            <input type="text"><br>
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName"><br>
 
-            <label for="firstName">E-mail</label>
-            <input type="text"><br>
+            <label for="email">E-mail</label>
+            <input type="email" name="email"><br>
 
-            <label for="firstName">Password</label>
-            <input type="text">
-            <p class="description">use 8 or more characters with a mix of letters numbers and symbols</p><br>
+            <label for="password">Password</label>
+            <input type="password" name="password">
+            <p class="description">Use 8 or more characters with a mix of letters, numbers, and symbols.</p><br>
 
-            <label for="firstName">Confirm Password</label>
-            <input type="text"><br>
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" name="confirmPassword"><br>
 
             <a href="login.php" class="link">Already have an account?</a><br>
 
+<<<<<<< HEAD
             <button class="register_btn">CREATE ACCOUNT</button>
 
-
+=======
+            <button type="submit" name="submit" class="register_btn">CREATE ACCOUNT</button>
+>>>>>>> 948e5a012b03a4ef9231a0a984a1ec08b9cb5fb8
         </div>
     </form>
 
@@ -59,7 +106,6 @@
             </ul>
         </div>
     </footer>
-
 </body>
 
 </html>
