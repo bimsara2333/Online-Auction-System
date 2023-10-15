@@ -16,12 +16,13 @@
             <li><a href="home.php">Home</a></li>
             <li><a href="#">Online Bidding</a></li>
             <li><a href="#">Auctioner</a></li>
+            <li><a href="category.php">Category</a></li>
             <li><a href="aboutUs.php">About Us</a></li>
             <li><a href="contactUs.php">Contact Us</a></li>
         </ul>
     </div>
 
-    <h1 class="contact_us">Contact Us</h1><br><br>
+    <h1 class="pagehead">Contact Us</h1><br>
 
     <div class="container">
         <div class="contact">
@@ -35,6 +36,7 @@
                     <strong>Email:</strong> <a href="mailto:info@yourauctionwebsite.com">info@yourauctionwebsite.com</a>
                 </p>
             </section>
+            <br>
 
             <section>
                 <h3>Contact Form</h3><br>
@@ -51,6 +53,7 @@
                     <input type="submit" value="Submit" class="register_btn">
                 </form>
             </section>
+            <br>
 
             <section>
                 <h3>Customer Support</h3><br>

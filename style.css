@@ -138,13 +138,13 @@ footer {
     text-decoration: underline;
 }
 
-.contact_us{
+.pagehead{
     padding-left: 90px;
     padding-top: 20px;
 }
 
 .container {
-    margin-left: 70px;
+    margin-left: 80px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -163,11 +163,11 @@ footer {
 }
 
 section{
-    background-color: #f4f4f4; /* Background color */
-    padding: 20px; /* Padding around the content */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
-    width: 600px; /* Set a fixed width for the form */
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 600px;
    
 }
 
@@ -190,3 +190,8 @@ section{
     margin-top: 20px;
 }
 
+.about{
+    background-color: #3498db;
+    margin-left: 90px;
+    padding-left: 90px;
+}
