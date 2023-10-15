@@ -6,7 +6,6 @@
 body {
     background-color: #f2f2f2;
 }
-
 h1.logo {
     background-color: #3498db;
     color: #fff;
@@ -19,6 +18,7 @@ h1.logo {
 .navbar {
     background-color: #333;
     overflow: hidden;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .navbar ul {
@@ -61,13 +61,12 @@ h2{
 
 label {
     display: block;
-    justify-content: center;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-input {
-    width: 95%;
+input[type="text"] {
+    width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -141,24 +140,8 @@ footer {
     padding-left: 90px;
     padding-top: 20px;
 }
-
-.container {
-    margin-left: 70px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px;
-}
-
-.contact {
-    flex: 1;
-    padding-right: 20px;
-}
-
-.contactusimg {
-    flex: 1;
-    width: 70%;
-    margin-left: 120px;
+.contact{
+    margin-left: 90px;
 }
 
 section{
@@ -188,4 +171,94 @@ section{
     border-radius: 5px;
     margin-top: 20px;
 }
+#b1{
+    position: absolute;
+    height: 35px;
+    width: 70px;
+    border-radius: 15%;
+    background-color: #666;
+    color: white;
+}
+#b2{
+    position: absolute;
+    left: 5rem;
+    height: 35px;
+    width: 70px;
+    border-radius: 15%;
+    background-color: #666;
+    color: white;
+}
+#b1:hover{
+    background-color: #c5c4d7;
+    color: black;
+    transition: all ease 0.2s;
+}
+#b2:hover{
+    background-color: #c5c4d7;
+    color: black;
+    transition: all ease 0.2s;
+}
+.navbtn{
+    position: absolute;
+    left: 80rem;
+    top: 1.5rem;
+}
+.centered-form {
+    position: absolute;
+    left: 30rem;
+    top: 10rem;
+    width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
 
+label {
+    margin-bottom: 8px;
+}
+
+input,
+textarea {
+    margin-bottom: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+}
+label {
+    margin-bottom: 8px;
+}
+
+input,
+textarea {
+    margin-bottom: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+#f1{
+    width: 30rem;
+}
