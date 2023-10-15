@@ -1,3 +1,48 @@
+<?php
+include 'connection.php';
+
+if (isset($_POST['submit'])) {
+    $aname = $_POST['aname'];
+    $anic = $_POST['anic'];
+    $astatus = $_POST['astatus'];
+    $aemail = $_POST['aemail'];
+    $anumber = $_POST['anumber'];
+
+    // Create an SQL statement with placeholders.
+    $sql = "INSERT INTO `auct` (aname, anic, astatus, aemail, anumber) VALUES (?, ?, ?, ?, ?)";
+
+    $stmt = $con->prepare($sql);
+
+    if ($stmt) {
+        // Bind the parameters and their types.
+        $stmt->bind_param('sssss', $aname, $anic, $astatus, $aemail, $anumber);
+
+        if ($stmt->execute()) {
+            echo "Data Inserted Successfully";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+        $stmt->close();
+    } else {
+        echo "Error: " . $con->error;
+    }
+}
+
+// Close your database connection when you're done.
+$con->close();
+?>
+
+
+<!DOCTYPE html>
+<!-- ... (rest of your HTML code remains the same) ... -->
+Now the code should work correctly, assuming your database connection and table are set up properly.
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,24 +69,25 @@
 <div class="centered-form">
     <h2>Add Auctioner</h2>
     <br>
-    <form action="#" method="post">
-        <label for="itemName">Name:</label>
-        <input type="text" id="f1" name="itemName" placeholder="Enter the item name" required>
+    <form method="post">
+    <label for="aname">Name:</label>
+    <input type="text" id="aname" name="aname" placeholder="Enter the item name" required>
 
-        <label for="itemType">NIC:</label>
-        <input type="text" id="f1" name="itemType" placeholder="Enter the item type" required>
+    <label for="anic">NIC:</label>
+    <input type="text" id="anic" name="anic" placeholder="Enter the item type" required>
 
-        <label for="minimumBid">Status:</label>
-        <input type="number" id="minimumBid" name="minimumBid" placeholder="Enter the minimum bid" required>
+    <label for="astatus">Status:</label>
+    <input type="number" id="astatus" name="astatus" placeholder="Enter the minimum bid" required>
 
-        <label for="closingDate">Email:</label>
-        <input type="date" id="closingDate" name="closingDate" required>
+    <label for="aemail">Email:</label>
+    <input type="email" id="aemail" name="aemail" required>
 
-        <label for="name">Contact Number:</label>
-        <input type="text" id="f1" name="name" placeholder="Enter your name" required>
+    <label for="anumber">Contact Number:</label>
+    <input type="text" id="anumber" name="anumber" placeholder="Enter your name" required>
 
-        <button type="submit">Add</button>
-    </form>
+    <button type="submit" name="submit">Add</button>
+</form>
+
 </div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 

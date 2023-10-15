@@ -33,22 +33,39 @@
             <th>Your Name</th>
             <th>Your Email</th>
             <th>Additional Information</th>
+            <th>Actions</th> <!-- Add a new column for actions -->
         </tr>
     </thead>
     <tbody>
-    <tr>
-            <td>Sample Item 1</td>
-            <td>Electronics</td>
-            <td>$100</td>
-            <td>2023-11-01</td>
-            <td>John Doe</td>
-            <td>john.doe@example.com</td>
-            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-            <td>
-                <a href="editItem.php" class="edit-btn">Edit</a>
-                <a href="addItem.php" class="delete-btn">Delete</a>
-            </td>
-        </tr>
+    <?php
+        $con = mysqli_connect('localhost', 'root', '', 'onlinebiding'); // Replace with your database connection details
+
+        if (!$con) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        $sql = "SELECT * FROM item"; // Replace 'items' with the actual table name
+        $result = mysqli_query($con, $sql);
+
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['iName'] . "</td>"; // Change column names accordingly
+                echo "<td>" . $row['iType'] . "</td>";
+                echo "<td>" . $row['mBid'] . "</td>";
+                echo "<td>" . $row['date'] . "</td>";
+                echo "<td>" . $row['yName'] . "</td>";
+                echo "<td>" . $row['yEmail'] . "</td>";
+                echo "<td>" . $row['info'] . "</td>";
+                echo "<td><a href='editItem.php?id=" . $row['iid'] . "' class='edit-btn'>Edit</a> | <a href='deleteItem.php?id=" . $row['iid'] . "' class='delete-btn'>Delete</a></td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "Error: " . mysqli_error($con);
+        }
+
+        mysqli_close($con);
+    ?>
     </tbody>
 </table>
 

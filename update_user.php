@@ -6,7 +6,7 @@ if (isset($_POST['update'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $con = mysqli_connect('localhost', 'root', '', 'project001');
+    $con = mysqli_connect('localhost', 'root', '', 'onlinebiding');
 
     if (!$con) {
         die("Connection failed: " . mysqli_connect_error());

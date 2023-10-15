@@ -22,31 +22,63 @@
 </header>
 
 <div class="centered-form">
-    <h2>Edit item details</h2>
+    <h2>Edit User Details</h2>
     <br>
     <form action="#" method="post">
-        <label for="itemName">Item Name:</label>
-        <input type="text" id="f1" name="itemName" placeholder="Enter the item name" required>
+    <?php
+    $con = mysqli_connect('localhost', 'root', '', 'onlinebiding');
+    if (!$con) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 
-        <label for="itemType">Item Type:</label>
-        <input type="text" id="f1" name="itemType" placeholder="Enter the item type" required>
+    if (isset($_POST['update'])) {
+        // Updated variable names
+        $item_id = $_POST['item_id'];  // Change $iid to $item_id
+        $iName = $_POST['iName'];
+        $iType = $_POST['iType'];
+        $mBid = $_POST['mBid'];
+        $date = $_POST['date'];
+        $yName = $_POST['yName'];
+        $yEmail = $_POST['yEmail'];
+        $info = $_POST['info'];
 
-        <label for="minimumBid">Minimum Bid:</label>
-        <input type="number" id="minimumBid" name="minimumBid" placeholder="Enter the minimum bid" required>
+        // Update the user's information in the database
+        $sql = "UPDATE item SET itemName = '$iName', itemType = '$iType', minimumBid = '$mBid', closingDate = '$date', name = '$yName', email = '$yEmail', message = '$info' WHERE iid = $item_id"; // Added WHERE clause
+        $result = mysqli_query($con, $sql);
 
-        <label for="closingDate">Closing Date:</label>
-        <input type="date" id="closingDate" name="closingDate" required>
+        if ($result) {
+            echo "Item information has been updated.";
+        } else {
+            echo "Error updating the item: " . mysqli_error($con);
+        }
+    } else {
+        // Fetch item data based on item ID
+        if (isset($_GET['item_id'])) {
+            $item_id = $_GET['item_id'];
+            $sql = "SELECT * FROM item WHERE iid = $item_id";
+            $result = mysqli_query($con, $sql);
 
-        <label for="name">Your Name:</label>
-        <input type="text" id="f1" name="name" placeholder="Enter your name" required>
+            if ($result && mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $iName = $row['itemName'];
+                $iType = $row['itemType'];
+                $mBid = $row['minimumBid'];
+                $date = $row['closingDate'];
+                $yName = $row['name'];
+                $yEmail = $row['email'];
+                $info = $row['message'];
 
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                // Rest of your code remains the same
+            } else {
+                echo "Item not found.";
+            }
+        } else {
+            echo "Item ID is not set in the URL.";
+        }
+    }
 
-        <label for="message">Additional Information:</label>
-        <textarea id="message" name="message" placeholder="Enter additional information" required></textarea>
-
-        <button type="submit">Update Data</button>
+    mysqli_close($con);
+    ?>
     </form>
 </div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

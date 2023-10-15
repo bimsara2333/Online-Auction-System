@@ -1,3 +1,36 @@
+<?php
+include 'connection.php';
+
+if (isset($_POST['submit'])) {
+    $cname = $_POST['cname'];
+    $cemail = $_POST['cemail'];
+    $cmessage = $_POST['cmessage'];
+   
+    // Create an SQL statement with placeholders, excluding 'id'.
+    $sql = "INSERT INTO `contact` (cname, cemail, cmessage) VALUES (?, ?, ?)";
+
+    $stmt = $con->prepare($sql);
+
+    if ($stmt) {
+        // Bind the parameters and their types, excluding 'id'.
+        $stmt->bind_param('sss', $cname, $cemail, $cmessage);
+
+        if ($stmt->execute()) {
+            echo "Data Inserted Successfully";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+        $stmt->close();
+    } else {
+        echo "Error: " . $con->error;
+    }
+
+    // Close your database connection when you're done.
+    $con->close();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,15 +71,15 @@
 
             <section>
                 <h3>Contact Form</h3><br>
-                <form>
+                <form method="post">
                     <label for="name">Your Name:</label>
-                    <input type="text" id="name" name="name" required><br><br>
+                    <input type="text" id="cname" name="cname" required><br><br>
 
                     <label for="email">Your Email:</label>
-                    <input type="email" id="email" name="email" required><br><br>
+                    <input type="email" id="cemail" name="cemail" required><br><br>
 
                     <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea><br><br>
+                    <textarea id="cmessage" name="cmessage" rows="5" required></textarea><br><br>
 
                     <input type="submit" value="Submit" class="register_btn">
                 </form>

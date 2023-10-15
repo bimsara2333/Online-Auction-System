@@ -1,3 +1,39 @@
+<?php
+include 'connection.php';
+
+if (isset($_POST['submit'])) {
+    $iName = $_POST['itemName'];
+    $iType = $_POST['itemType'];
+    $mBid = $_POST['minimumBid'];
+    $date = $_POST['closingDate'];
+    $yName = $_POST['name'];
+    $yEmail = $_POST['email'];
+    $info = $_POST['message'];
+
+    // Create an SQL statement with placeholders, excluding 'id'.
+    $sql = "INSERT INTO `item` (iName, iType, mBid, date, yName, yEmail, info) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt = $con->prepare($sql);
+
+    if ($stmt) {
+        // Bind the parameters and their types, excluding 'id'.
+        $stmt->bind_param('ssdssss', $iName, $iType, $mBid, $date, $yName, $yEmail, $info);
+
+        if ($stmt->execute()) {
+            echo "Data Inserted Successfully";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+        $stmt->close();
+    } else {
+        echo "Error: " . $con->error;
+    }
+
+    // Close your database connection when you're done.
+    $con->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +60,7 @@
 <div class="centered-form">
     <h2>Add item for start bidding</h2>
     <br>
-    <form action="#" method="post">
+    <form method="post">
         <label for="itemName">Item Name:</label>
         <input type="text" id="f1" name="itemName" placeholder="Enter the item name" required>
 
@@ -46,7 +82,7 @@
         <label for="message">Additional Information:</label>
         <textarea id="message" name="message" placeholder="Enter additional information" required></textarea>
 
-        <button type="submit">Place Bid</button>
+        <button type="submit" name="submit">Place Bid</button>
     </form>
 </div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
