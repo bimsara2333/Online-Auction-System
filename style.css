@@ -137,13 +137,13 @@ footer {
     text-decoration: underline;
 }
 
-.contact_us{
+.pagehead{
     padding-left: 90px;
     padding-top: 20px;
 }
 
 .container {
-    margin-left: 70px;
+    margin-left: 80px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -162,11 +162,11 @@ footer {
 }
 
 section{
-    background-color: #f4f4f4; /* Background color */
-    padding: 20px; /* Padding around the content */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
-    width: 600px; /* Set a fixed width for the form */
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 600px;
    
 }
 
@@ -189,3 +189,70 @@ section{
     margin-top: 20px;
 }
 
+.contact-button:hover{
+    background-color: #0056b3;
+}
+
+.about{
+    margin-left: 90px;
+}
+
+.profilecontainer {
+    border: 1px solid #ccc;
+    padding: 20px; 
+    width: 800px; 
+    margin-left: 90px; 
+    background-color: #f9f9f9; 
+}
+
+.user-details {
+    margin-top: 10px;
+}
+
+.userdetails {
+    margin: 5px 0;
+}
+
+.profilecontainer {
+    margin-left: 90px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#data-table th {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+#data-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+
+.edit-btn, .delete-btn {
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    background-color: #2980b9;
+}

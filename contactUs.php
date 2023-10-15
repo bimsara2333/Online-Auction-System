@@ -47,6 +47,7 @@ if (isset($_POST['submit'])) {
     <div class="navbar">
         <ul>
             <li><a href="home.php">Home</a></li>
+            <li><a href="myProfile.php">My Profile</a></li>
             <li><a href="viewItems.php">Online Bidding</a></li>
             <li><a href="viewAuctioner.php">Auctioner</a></li>
             <li><a href="aboutUs.php">About Us</a></li>
@@ -54,7 +55,7 @@ if (isset($_POST['submit'])) {
         </ul>
     </div>
 
-    <h1 class="contact_us">Contact Us</h1><br><br>
+    <h1 class="pagehead">Contact Us</h1><br>
 
     <div class="container">
         <div class="contact">
@@ -68,6 +69,7 @@ if (isset($_POST['submit'])) {
                     <strong>Email:</strong> <a href="mailto:info@yourauctionwebsite.com">info@yourauctionwebsite.com</a>
                 </p>
             </section>
+            <br>
 
             <section>
                 <h3>Contact Form</h3><br>
@@ -84,6 +86,7 @@ if (isset($_POST['submit'])) {
                     <input type="submit" value="Submit" class="register_btn">
                 </form>
             </section>
+            <br>
 
             <section>
                 <h3>Customer Support</h3><br>
@@ -97,7 +100,7 @@ if (isset($_POST['submit'])) {
             </section>
         </div>
         <div class="image">
-            <img src="contactus.jpg" alt="contactus" class="contactusimg">
+            <img src="./images/contactus.jpg" alt="contactus" class="contactusimg">
         </div>
     </div>
 

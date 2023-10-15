@@ -58,6 +58,7 @@ Now the code should work correctly, assuming your database connection and table 
     <div class="navbar">
         <ul>
             <li><a href="home.php">Home</a></li>
+            <li><a href="myProfile.php">My Profile</a></li>
             <li><a href="viewItems.php">Online Bidding</a></li>
             <li><a href="viewAuctioner.php">Auctioner</a></li>
             <li><a href="aboutUs.php">About Us</a></li>

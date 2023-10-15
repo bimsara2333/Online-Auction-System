@@ -45,12 +45,17 @@ if(isset($_POST['submit'])){
     <h1 class="logo">E-Auction.</h1>
 
     <div class="navbar">
-        <ul>
+    <ul>
             <li><a href="home.php">Home</a></li>
+<<<<<<< HEAD
+            <li><a href="aboutUsNoLogin.php">About Us</a></li>
+=======
+            <li><a href="myProfile.php">My Profile</a></li>
             <li><a href="#">Online Bidding</a></li>
             <li><a href="#">Auctioner</a></li>
             <li><a href="aboutUs.php">About Us</a></li>
             <li><a href="contactUs.php">Contact Us</a></li>
+>>>>>>> c5491d50dee519ca4f407fe583ed0b9f11afa6b6
         </ul>
     </div>
 
@@ -80,7 +85,12 @@ if(isset($_POST['submit'])){
 
             <a href="login.php" class="link">Already have an account?</a><br>
 
+<<<<<<< HEAD
+            <button class="register_btn">CREATE ACCOUNT</button>
+
+=======
             <button type="submit" name="submit" class="register_btn">CREATE ACCOUNT</button>
+>>>>>>> 948e5a012b03a4ef9231a0a984a1ec08b9cb5fb8
         </div>
     </form>
 
