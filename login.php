@@ -1,42 +1,4 @@
-<?php
-// Establish a database connection (you may need to modify this with your database credentials)
-include('connection.php');
 
-// Handle the form submission
-if (isset($_POST['submit'])) {
-    $email = $_POST['email'];
-    $password = $_POST['passwd'];
-
-    // Query the database to check if the user exists and the password is correct
-    $sql = "SELECT * FROM users WHERE email = '$email'";
-    $result = mysqli_query($con, $sql);
-
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $hashedPassword = $row['password'];
-
-        if (password_verify($password, $hashedPassword)) {
-            // Password is correct, redirect to afterLogin.php
-            header("Location: afterLogin.php");
-            exit();
-        } else {
-            $error_message = "Incorrect password. Please try again.";
-        }
-    } else {
-        $error_message = "User not found. Please register if you don't have an account.";
-    }
-}
-
-// Close the database connection
-mysqli_close($con);
-?>
-
-<!-- Add this code to display the error message -->
-<?php if (isset($error_message)) : ?>
-    <div class="error-message">
-        <?php echo $error_message; ?>
-    </div>
-<?php endif; ?>
 
 
 

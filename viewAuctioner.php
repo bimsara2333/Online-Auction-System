@@ -58,7 +58,7 @@
                 echo "<td>" . $row['astatus'] . "</td>";
                 echo "<td>" . $row['aemail'] . "</td>";
                 echo "<td>" . $row['anumber'] . "</td>";
-                echo '<td><a href="editAuctioner.php?name=' . $name . '"  class="edit-btn">Edit</a> | <a href="deleteAuctioner.php?name=' . $name . '" class="delete-btn">Delete</a></td>';
+                echo '<td><a href="editAuctioner.php?aidgi=' . $aid . '"  class="edit-btn">Edit</a> | <a href="deleteAuctioner.php?aid=' . $aid . '" class="delete-btn">Delete</a></td>';
                 echo "</tr>";
             }
         } else {
