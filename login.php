@@ -1,30 +1,41 @@
 <?php
-
-include('connection.php');
+include('connection.php'); // Include your database connection script
 
 $errors = [];
 
-if (isset($_POST['submit'])) {
-    $email = $_POST['email'];
+if (isset($_POST['login'])) {
+    $username = $_POST['email'];
     $password = $_POST['passwd'];
 
-    $sql = "SELECT * FROM user WHERE email=? AND password=?";
-    $stmt = mysqli_prepare($con, $sql);
-    mysqli_stmt_bind_param($stmt, "ss", $email, $password);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+    // Use prepared statements to prevent SQL injection
+    $sql = "SELECT * FROM sampletable WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        $row = mysqli_fetch_array($result);
-        header('location: afterLogin.php');
+        $row = $result->fetch_assoc();
+        if (password_verify($password, $row['password'])) {
+            // Successful login; you can set a session here or redirect to a user profile page
+            session_start();
+            $_SESSION['username'] = $username;
+            header("Location: afterLogin.php");
+            exit();
+        } else {
+            $errors[] = "Incorrect password. Please try again.";
+        }
     } else {
-        echo "<script>alert('The E-mail and the password do not match.')</script>";
+        $errors[] = "Username not found. Please check your username or register.";
     }
 
-    mysqli_stmt_close($stmt);
+    foreach ($errors as $error) {
+        echo $error . "<br>";
+    }
 }
 
 ?>
+
 
 
 <!DOCTYPE html>
@@ -50,13 +61,13 @@ if (isset($_POST['submit'])) {
     <h2>LOGIN</h2>
     <br>
 
-    <form action="#">
+    <form action="afterLogin.php" method="post">
         <div class="register">
             <label for="email">E-mail</label>
             <input type="text" name="email"><br>
 
             <label for="passwd">Password</label>
-            <input type="text" name="passwd">
+            <input type="password" name="passwd">
 
             <a href="register.php" class="link">Do not have an account?</a><br>
 
