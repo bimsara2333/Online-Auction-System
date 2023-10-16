@@ -27,9 +27,9 @@
 
     <div class="profilecontainer">
         <div class="user-details">
-            <p class="userdetails">Username: user@example.com</p>
-            <p class="userdetails">First Name: John</p>
-            <p class="userdetails">Last Name: Doe</p>
+            <p class="userdetails">Username: <?php echo $username; ?></p>
+            <p class="userdetails">First Name: <?php echo $firstName; ?></p>
+            <p class="userdetails">Last Name: <?php echo $lastName; ?></p>
 
             <a href="editProfile.php" class="contact-button">Edit</a>
         </div>
@@ -47,16 +47,34 @@
         </tr>
     </thead>
     <tbody>
-    <tr>
-            <td>125</td>
-            <td>2 nd lane</td>
-            <td>colombo 07</td>
-            <td>10200</td>
-            <td>
-                <a href="editAddress.php" class="edit-btn">Edit</a>
-                <a href="addItem.php" class="delete-btn">Delete</a>
-            </td>
-        </tr>
+    <?php
+        $con = mysqli_connect('localhost', 'root', '', 'onlinebiding'); // Replace with your database connection details
+
+        if (!$con) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        $sql = "SELECT * FROM address"; // Replace 'items' with the actual table name
+        $result = mysqli_query($con, $sql);
+
+       if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $adid = $row['adid'];  // Add this line to retrieve the value of $iid
+                echo "<tr>";
+                echo "<td>" . $adid . "</td>";
+                echo "<td>" . $row['address1'] . "</td>"; // Change column names accordingly
+                echo "<td>" . $row['address2'] . "</td>";
+                echo "<td>" . $row['address3'] . "</td>";
+                echo "<td>" . $row['pcode'] . "</td>";
+                echo '<td><a href="editAddress.php?adid=' . $adid . '">Edit</a> | <a href="deleteItem.php?adid=' . $adid . '" class="delete-btn">Delete</a></td>';
+                echo "</tr>";
+            }
+        } else {
+            echo "Error: " . mysqli_error($con);
+        }
+
+        mysqli_close($con);
+    ?>
     </tbody>
 </table>
 </div>
