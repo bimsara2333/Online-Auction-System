@@ -66,7 +66,7 @@
                 echo "<td>" . $row['address2'] . "</td>";
                 echo "<td>" . $row['address3'] . "</td>";
                 echo "<td>" . $row['pcode'] . "</td>";
-                echo '<td><a href="editAddress.php?adid=' . $adid . '">Edit</a> | <a href="deleteItem.php?adid=' . $adid . '" class="delete-btn">Delete</a></td>';
+                echo '<td><a href="editAddress.php?adid=' . $adid . '">Edit</a> | <a href="deleteaddress.php?adid=' . $adid . '" class="delete-btn">Delete</a></td>';
                 echo "</tr>";
             }
         } else {
