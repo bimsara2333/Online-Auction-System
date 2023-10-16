@@ -72,6 +72,18 @@ if (isset($_POST['submit'])) {
             <br>
 
             <section>
+                <h3>Customer Support</h3><br>
+                <p>If you require immediate assistance, our customer support team is available during our business hours:</p>
+                <p>
+                    <strong>Business Hours:</strong><br>
+                    Monday-Friday: 9:00 AM - 6:00 PM<br>
+                    Saturday: 10:00 AM - 4:00 PM<br>
+                    Sunday: Closed
+                </p>
+            </section>
+            <br>
+
+            <section>
                 <h3>Contact Form</h3><br>
                 <form method="post">
                     <label for="name">Your Name:</label>
@@ -88,16 +100,6 @@ if (isset($_POST['submit'])) {
             </section>
             <br>
 
-            <section>
-                <h3>Customer Support</h3><br>
-                <p>If you require immediate assistance, our customer support team is available during our business hours:</p>
-                <p>
-                    <strong>Business Hours:</strong><br>
-                    Monday-Friday: 9:00 AM - 6:00 PM<br>
-                    Saturday: 10:00 AM - 4:00 PM<br>
-                    Sunday: Closed
-                </p>
-            </section>
         </div>
         <div class="image">
             <img src="./images/contactus.jpg" alt="contactus" class="contactusimg">
