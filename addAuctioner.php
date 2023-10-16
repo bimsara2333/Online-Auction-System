@@ -19,6 +19,7 @@ if (isset($_POST['submit'])) {
 
         if ($stmt->execute()) {
             echo "Data Inserted Successfully";
+            header("Location: viewAuctioner.php");
         } else {
             echo "Error: " . $stmt->error;
         }
