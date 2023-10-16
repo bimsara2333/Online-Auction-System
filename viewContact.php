@@ -43,6 +43,7 @@
         $sql = "SELECT * FROM contact"; // Replace 'items' with the actual table name
         $result = mysqli_query($con, $sql);
 
+<<<<<<< HEAD
        if ($result) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $cid = $row['cid'];  // Add this line to retrieve the value of $iid
@@ -53,6 +54,22 @@
                 echo "<td>" . $row['cmessage'] . "</td>";
                 echo "<td><a href='editContact.php?cid={$row['cid']}' class='edit-btn'>Edit</a> | <a href='deleteContact.php?cid={$row['cid']}' class='delete-btn'>Delete</a></td>";
                 echo "</tr>";
+=======
+                // Output data of each row
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>{$row['cid']}</td>";
+                    echo "<td>{$row['cname']}</td>";
+                    echo "<td>{$row['cemail']}</td>";
+                    echo "<td>{$row['cmessage']}</td>";
+                    echo "<td><a href='editmsg.php?cid={$row['cid']}' class='edit-btn'>Edit</a> | <a href='deleteContact.php?cid={$row['cid']}' class='delete-btn'>Delete</a></td>";
+                    echo "</tr>";
+                }
+
+                echo "</table>";
+            } else {
+                echo "No messages found";
+>>>>>>> 55697008a8c3047e05ac350e8cab29e7fbc60de1
             }
         } else {
             echo "Error: " . mysqli_error($con);
