@@ -1,7 +1,7 @@
 <?php
 include 'connection.php';
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['cname']) && isset($_POST['cemail']) && isset($_POST['cmessage'])) {
     $cname = $_POST['cname'];
     $cemail = $_POST['cemail'];
     $cmessage = $_POST['cmessage'];
@@ -30,17 +30,14 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
-
 <body>
     <h1 class="logo">E-Auction.</h1>
 
@@ -86,16 +83,16 @@ if (isset($_POST['submit'])) {
             <section>
                 <h3>Contact Form</h3><br>
                 <form method="post">
-                    <label for="name">Your Name:</label>
+                    <label for="cname">Your Name:</label>
                     <input type="text" id="cname" name="cname" required><br><br>
 
-                    <label for="email">Your Email:</label>
+                    <label for="cemail">Your Email:</label>
                     <input type="email" id="cemail" name="cemail" required><br><br>
 
-                    <label for="message">Message:</label>
+                    <label for="cmessage">Message:</label>
                     <textarea id="cmessage" name="cmessage" rows="5" required></textarea><br><br>
 
-                    <input type="submit" value="Submit" class="register_btn">
+                    <input type="submit" name="submit" value="Submit" class="register_btn">
                 </form>
             </section>
             <br>
@@ -116,7 +113,5 @@ if (isset($_POST['submit'])) {
             </ul>
         </div>
     </footer>
-
 </body>
-
 </html>

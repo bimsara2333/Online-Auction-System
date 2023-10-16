@@ -27,6 +27,7 @@
 <table id="data-table">
     <thead>
         <tr>
+            <th>Auct ID</th>
             <th>Name</th>
             <th>NIC</th>
             <th>Status</th>
@@ -48,14 +49,16 @@
 
         if ($result) {
             while ($row = mysqli_fetch_assoc($result)) {
+                $aid = $row['aid'];  // Assuming the column name is 'aid'
                 $name = $row['aname'];  // Change column names accordingly
                 echo "<tr>";
+                echo "<td>" . $aid . "</td>";
                 echo "<td>" . $name . "</td>";
                 echo "<td>" . $row['anic'] . "</td>";
                 echo "<td>" . $row['astatus'] . "</td>";
                 echo "<td>" . $row['aemail'] . "</td>";
                 echo "<td>" . $row['anumber'] . "</td>";
-                echo '<td><a href="editAuctioner.php?name=' . $name . '">Edit</a> | <a href="deleteAuctioner.php?name=' . $name . '" class="delete-btn">Delete</a></td>';
+                echo '<td><a href="editAuctioner.php?name=' . $name . '"  class="edit-btn">Edit</a> | <a href="deleteAuctioner.php?name=' . $name . '" class="delete-btn">Delete</a></td>';
                 echo "</tr>";
             }
         } else {
