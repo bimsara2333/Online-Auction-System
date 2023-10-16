@@ -99,7 +99,10 @@ if (isset($_POST['cname']) && isset($_POST['cemail']) && isset($_POST['cmessage'
 
         </div>
         <div class="image">
-            <img src="./images/contactus.jpg" alt="contactus" class="contactusimg">
+            <img src="./images/contactus.jpg" alt="contactus" class="contactusimg"><br>
+            <div class="bb1">
+                <a href="viewContact.php" class="edit-btn" >View Sent messages</a>
+            </div>
         </div>
     </div>
 

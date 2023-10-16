@@ -256,3 +256,9 @@ section{
 .edit-btn:hover, .delete-btn:hover {
     background-color: #2980b9;
 }
+
+.bb1{
+    position: absolute;
+    top: 43rem;
+    left: 65rem;
+}
