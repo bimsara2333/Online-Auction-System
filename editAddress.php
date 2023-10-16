@@ -14,7 +14,7 @@
     <div class="navbar">
         <ul>
             <li><a href="home.php">Home</a></li>
-            <li><a href="myProfile.php">My Profile</a></li>
+            <li><a href="p.php">My Profile</a></li>
             <li><a href="viewItems.php">Online Bidding</a></li>
             <li><a href="viewAuctioner.php">Auctioneer</a></li>
             <li><a href="aboutUs.php">About Us</a></li>
@@ -49,7 +49,7 @@
 
                                     if ($stmt->execute()) {
                                         // Redirect using PHP header
-                                        header("Location: myProfile.php");
+                                        header("Location: myprofile.php");
                                         exit;
                                     } else {
                                         $errorMessage = "Error updating the address: " . $stmt->error;
@@ -65,7 +65,7 @@
                     } else {
                         // Form rendering
                         if (!isset($_GET["adid"])) {
-                            header("Location: myProfile.php");
+                            header("Location: p.php");
                             exit;
                         }
                         $adid = $_GET["adid"];
@@ -73,7 +73,7 @@
                         $result = $con->query($sql);
                         $row = $result->fetch_assoc();
                         if (!$row) {
-                            header("Location: myProfile.php");
+                            header("Location: p.php");
                             exit;
                         }
                         $address1 = $row['address1'];

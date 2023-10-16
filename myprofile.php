@@ -40,9 +40,10 @@
     <table id="data-table">
     <thead>
         <tr>
+            <th>Address ID</th>
             <th>Adress line 1</th>
-            <th>Adress line 1</th>
-            <th>Adress line 1</th>
+            <th>Adress line 2</th>
+            <th>Adress line 3</th>
             <th>Postal Code</th>
         </tr>
     </thead>
@@ -66,7 +67,7 @@
                 echo "<td>" . $row['address2'] . "</td>";
                 echo "<td>" . $row['address3'] . "</td>";
                 echo "<td>" . $row['pcode'] . "</td>";
-                echo '<td><a href="editAddress.php?adid=' . $adid . '">Edit</a> | <a href="deleteaddress.php?adid=' . $adid . '" class="delete-btn">Delete</a></td>';
+                echo '<td><a href="editAddress.php?adid=' . $adid . '" class="edit-btn">Edit</a> | <a href="deleteaddress.php?adid=' . $adid . '" class="delete-btn">Delete</a></td>';
                 echo "</tr>";
             }
         } else {
