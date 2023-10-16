@@ -1,40 +1,42 @@
 <?php
-include('connection.php'); // Include your database connection script
+// Establish a database connection (you may need to modify this with your database credentials)
+include('connection.php');
 
-$errors = [];
-
-if (isset($_POST['login'])) {
-    $username = $_POST['email'];
+// Handle the form submission
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
     $password = $_POST['passwd'];
 
-    // Use prepared statements to prevent SQL injection
-    $sql = "SELECT * FROM sampletable WHERE username = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // Query the database to check if the user exists and the password is correct
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $result = mysqli_query($con, $sql);
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-            // Successful login; you can set a session here or redirect to a user profile page
-            session_start();
-            $_SESSION['username'] = $username;
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $hashedPassword = $row['password'];
+
+        if (password_verify($password, $hashedPassword)) {
+            // Password is correct, redirect to afterLogin.php
             header("Location: afterLogin.php");
             exit();
         } else {
-            $errors[] = "Incorrect password. Please try again.";
+            $error_message = "Incorrect password. Please try again.";
         }
     } else {
-        $errors[] = "Username not found. Please check your username or register.";
-    }
-
-    foreach ($errors as $error) {
-        echo $error . "<br>";
+        $error_message = "User not found. Please register if you don't have an account.";
     }
 }
 
+// Close the database connection
+mysqli_close($con);
 ?>
+
+<!-- Add this code to display the error message -->
+<?php if (isset($error_message)) : ?>
+    <div class="error-message">
+        <?php echo $error_message; ?>
+    </div>
+<?php endif; ?>
 
 
 

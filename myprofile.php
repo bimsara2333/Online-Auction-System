@@ -27,9 +27,9 @@
 
     <div class="profilecontainer">
         <div class="user-details">
-            <p class="userdetails">Username: user@example.com</p>
-            <p class="userdetails">First Name: John</p>
-            <p class="userdetails">Last Name: Doe</p>
+            <p class="userdetails">Username: <?php echo $username; ?></p>
+            <p class="userdetails">First Name: <?php echo $firstName; ?></p>
+            <p class="userdetails">Last Name: <?php echo $lastName; ?></p>
 
             <a href="editProfile.php" class="contact-button">Edit</a>
         </div>
