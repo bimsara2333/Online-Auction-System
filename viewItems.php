@@ -72,7 +72,7 @@
     ?>
     </tbody>
 </table>
-
+<br><br><br><br><br><br><br><br>
 <footer>
     <div class="footer-content">
         <p>&copy; 2023 E-Auction. All rights reserved.</p>

@@ -14,7 +14,7 @@
         <ul>
             <li><a href="myProfile.php">My Profile</a></li>
             <li><a href="viewItems.php">Online Bidding</a></li>
-            <li><a href="viewAuctioner.php">Auctioneer</a></li>
+            <li><a href="viewAuctioner.php">Auctioner</a></li>
             <li><a href="aboutUs.php">About Us</a></li>
             <li><a href="contactUs.php">Contact Us</a></li>
             <li><a href="home.php">Log out</a></li>
@@ -35,7 +35,7 @@
     </thead>
     <tbody>
     <?php
-    $con = mysqli_connect('localhost', 'root', '', 'onlinebidding'); // Replace with your database connection details
+    $con = mysqli_connect('localhost', 'root', '', 'onlinebiding'); // Replace with your database connection details
 
     if (!$con) {
         die("Connection failed: " . mysqli_connect_error());
@@ -63,6 +63,8 @@
     ?>
     </tbody>
 </table>
+
+<br><br><br><br><br><br><br><br>
 
 <footer>
     <div class="footer-content">

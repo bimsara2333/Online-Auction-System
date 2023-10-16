@@ -73,19 +73,19 @@ Now the code should work correctly, assuming your database connection and table 
     <br>
     <form method="post">
     <label for="aname">Name:</label>
-    <input type="text" id="aname" name="aname" placeholder="Enter the item name" required>
+    <input type="text" id="aname" name="aname" required>
 
     <label for="anic">NIC:</label>
-    <input type="text" id="anic" name="anic" placeholder="Enter the item type" required>
+    <input type="text" id="anic" name="anic"  required>
 
     <label for="astatus">Status:</label>
-    <input type="number" id="astatus" name="astatus" placeholder="Enter the minimum bid" required>
+    <input type="number" id="astatus" name="astatus"  required>
 
     <label for="aemail">Email:</label>
     <input type="email" id="aemail" name="aemail" required>
 
     <label for="anumber">Contact Number:</label>
-    <input type="text" id="anumber" name="anumber" placeholder="Enter your name" required>
+    <input type="text" id="anumber" name="anumber" required>
 
     <button type="submit" name="submit">Add</button>
 </form>
