@@ -12,11 +12,7 @@
     <div class="navbar">
         <ul>
             <li><a href="home.php">Home</a></li>
-            <li><a href="myProfile.php">My Profile</a></li>
-            <li><a href="viewItems.php">Online Bidding</a></li>
-            <li><a href="viewAuctioner.php">Auctioner</a></li>
-            <li><a href="aboutUs.php">About Us</a></li>
-            <li><a href="contactUs.php">Contact Us</a></li>
+            <li><a href="aboutUsNoLogin.php">About Us</a></li>
         </ul>
     </div>
 
@@ -60,7 +56,7 @@
         <section class="descriptionBox">
             <h3>Join Us Today</h3>
             <p>At Your Auction Company Name, we're more than just an auction house; we're a community of passionate collectors, sellers, and enthusiasts. Join us in the excitement of the auction world, and let us help you discover the extraordinary.</p>
-            <a href="contactUs.php" class="contact-button">Contact Us</a>
+            <a href="login.php" class="contact-button">Contact Us</a>
         </section>
     </div>
 

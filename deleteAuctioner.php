@@ -6,11 +6,11 @@ include 'connection.php';
 // deleteAuctioner.php
 
 // Check if the name parameter is set in the URL
-if (isset($_GET['name'])) {
-    $name = mysqli_real_escape_string($con, $_GET['name']);
+if (isset($_GET['aid'])) {
+    $aid = mysqli_real_escape_string($con, $_GET['aid']);
 
     // Delete the row from the database
-    $sql = "DELETE FROM auct WHERE aname = '$name'";
+    $sql = "DELETE FROM auct WHERE aid = '$aid'";
     $result = mysqli_query($con, $sql);
 
     if ($result) {

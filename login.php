@@ -25,13 +25,13 @@
     <h2>LOGIN</h2>
     <br>
 
-    <form action="afterLogin.php" method="post">
+    <form action="myprofile.php" method="post">
         <div class="register">
             <label for="email">E-mail</label>
-            <input type="text" name="email"><br>
+            <input type="email" name="email" required><br>
 
             <label for="passwd">Password</label>
-            <input type="password" name="passwd">
+            <input type="password" name="passwd" required>
 
             <a href="register.php" class="link">Do not have an account?</a><br>
 

@@ -11,13 +11,13 @@
 <header id="header1">
     <h1 class="logo">E-Auction</h1>
     <div class="navbar">
-        <ul>
-            <li><a href="home.php">Home</a></li>
-            <li><a href="myProfile.php">My Profile</a></li>
+    <ul>
+            <li><a href="myProfile.php">My Profile</a></li>  
             <li><a href="viewItems.php">Online Bidding</a></li>
             <li><a href="viewAuctioner.php">Auctioner</a></li>
             <li><a href="aboutUs.php">About Us</a></li>
             <li><a href="contactUs.php">Contact Us</a></li>
+            <li><a href="home.php">Log out</a></li>
         </ul>
     </div>
 </header>
@@ -58,7 +58,7 @@
                 echo "<td>" . $row['astatus'] . "</td>";
                 echo "<td>" . $row['aemail'] . "</td>";
                 echo "<td>" . $row['anumber'] . "</td>";
-                echo '<td><a href="editAuctioner.php?aidgi=' . $aid . '"  class="edit-btn">Edit</a> | <a href="deleteAuctioner.php?aid=' . $aid . '" class="delete-btn">Delete</a></td>';
+                echo '<td><a href="editAuctioner.php?aid=' . $aid . '"  class="edit-btn">Edit</a> | <a href="deleteAuctioner.php?aid=' . $aid . '" class="delete-btn">Delete</a></td>';
                 echo "</tr>";
             }
         } else {
