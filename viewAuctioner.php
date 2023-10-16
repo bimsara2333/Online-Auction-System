@@ -32,20 +32,38 @@
             <th>Status</th>
             <th>Email</th>
             <th>Contact Number</th>
+            <th>Actions</th> <!-- Add a new column for actions -->
         </tr>
     </thead>
     <tbody>
-    <tr>
-            <td>Sample Item 1</td>
-            <td>Electronics</td>
-            <td>$100</td>
-            <td>2023-11-01</td>
-            <td>John Doe</td>
-            <td>
-                <a href="editAuctioner.php" class="edit-btn">Edit</a>
-                <a href="addItem.php" class="delete-btn">Delete</a>
-            </td>
-        </tr>
+    <?php
+        $con = mysqli_connect('localhost', 'root', '', 'onlinebiding'); // Replace with your database connection details
+
+        if (!$con) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        $sql = "SELECT * FROM auct"; // Replace 'auct' with the actual table name
+        $result = mysqli_query($con, $sql);
+
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $name = $row['aname'];  // Change column names accordingly
+                echo "<tr>";
+                echo "<td>" . $name . "</td>";
+                echo "<td>" . $row['anic'] . "</td>";
+                echo "<td>" . $row['astatus'] . "</td>";
+                echo "<td>" . $row['aemail'] . "</td>";
+                echo "<td>" . $row['anumber'] . "</td>";
+                echo '<td><a href="editAuctioner.php?name=' . $name . '">Edit</a> | <a href="deleteAuctioner.php?name=' . $name . '" class="delete-btn">Delete</a></td>';
+                echo "</tr>";
+            }
+        } else {
+            echo "Error: " . mysqli_error($con);
+        }
+
+        mysqli_close($con);
+    ?>
     </tbody>
 </table>
 
