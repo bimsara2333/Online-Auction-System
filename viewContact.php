@@ -45,7 +45,7 @@ $result = $con->query($sql);
                     echo "<td>{$row['cname']}</td>";
                     echo "<td>{$row['cemail']}</td>";
                     echo "<td>{$row['cmessage']}</td>";
-                    echo "<td><a href='editContact.php?cid={$row['cid']}' class='edit-btn'>Edit</a> | <a href='deleteContact.php?cid={$row['cid']}' class='delete-btn'>Delete</a></td>";
+                    echo "<td><a href='editmsg.php?cid={$row['cid']}' class='edit-btn'>Edit</a> | <a href='deleteContact.php?cid={$row['cid']}' class='delete-btn'>Delete</a></td>";
                     echo "</tr>";
                 }
 
