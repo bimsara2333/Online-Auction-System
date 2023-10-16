@@ -44,7 +44,7 @@
         }
 
         // Fetch data if contact_id is provided in the URL
-        $contact_id = $_GET['contact_id'];
+        $contact_id = $_GET['cid'];
         $sql_fetch = "SELECT * FROM `contact` WHERE id = $contact_id";
         $result_fetch = $con->query($sql_fetch);
 
