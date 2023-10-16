@@ -27,80 +27,72 @@
     <div class="centered-form">
         <h2>Edit Item Details</h2>
         <br>
-        <form action="#" method="post">
         <?php
-include 'connection.php';  // Make sure to include your database connection configuration
+        include 'connection.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Form submission
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Form submission logic
+            if (isset($_POST['iid'])) {
+                $iid = $_POST['iid'];
+                $iName = $_POST['iName'];
+                $iType = $_POST['iType'];
+                $mBid = $_POST['mBid'];
+                $date = $_POST['date'];
+                $yName = $_POST['yName'];
+                $yEmail = $_POST['yEmail'];
+                $info = $_POST['info'];
 
-    // Check if the "iid" key is set in the $_POST array
-    if (isset($_POST['iid'])) {
-        // Retrieve form data
-        $iid = $_POST['iid'];
-        $iName = $_POST['iName'];
-        $iType = $_POST['iType'];
-        $mBid = $_POST['mBid'];
-        $date = $_POST['date'];
-        $yName = $_POST['yName'];
-        $yEmail = $_POST['yEmail'];
-        $info = $_POST['info'];
+                if (empty($iid) || empty($iName) || empty($iType) || empty($mBid) || empty($date) || empty($yName) || empty($yEmail) || empty($info)) {
+                    $errorMessage = "All the fields are required";
+                } else {
+                    $sql = "UPDATE item SET iName ='$iName', iType ='$iType', mBid ='$mBid', date ='$date', yName ='$yName', yEmail ='$yEmail', info ='$info' WHERE iid='$iid'";
+                    $result = $con->query($sql);
 
-        do {
-            // Check if variables are empty
-            if (empty($iid) || empty($iName) || empty($iType) || empty($mBid) || empty($date) || empty($yName) || empty($yEmail) || empty($info)) {
-                $errorMessage = "All the fields are required";
-                break;
+                    if (!$result) {
+                        $errorMessage = "Invalid query: " . $con->error;
+                    } else {
+                        // Redirect after successful update
+                        header("location:viewItems.php");
+                        exit;
+                    }
+                }
+            } else {
+                $errorMessage = "Item ID is not set in the form.";
             }
+        } else {
+            // Form rendering logic
+            if (!isset($_GET["iid"])) {
+                header("location:viewItems.php");
+                exit;
+            }
+            $iid = $_GET["iid"];
 
-            // Perform the update query
-            $sql = "UPDATE item SET iName ='$iName', iType ='$iType', mBid ='$mBid', date ='$date', yName ='$yName', yEmail ='$yEmail', info ='$info' WHERE iid='$iid'";
+            $sql = "SELECT * FROM item WHERE iid=$iid";
             $result = $con->query($sql);
+            $row = $result->fetch_assoc();
 
-            if (!$result) {
-                $errorMessage = "Invalid query: " . $con->error;
-                break;
+            if (!$row) {
+                header("location:viewItems.php");
+                exit;
             }
+            $iName = $row['iName'];
+            $iType = $row['iType'];
+            $mBid = $row['mBid'];
+            $date = $row['date'];
+            $yName = $row['yName'];
+            $yEmail = $row['yEmail'];
+            $info = $row['info'];
+        }
+        ?>
+        <form action="#" method="post">
 
-            // Redirect after successful update
-            header("location:viewItems.php");
-            exit;
+            <input type="hidden" name="iid" value="<?php echo $iid; ?>">
 
-        } while (false);
-    } else {
-        $errorMessage = "Item ID is not set in the form.";
-    }
-} else {
-    // Form rendering
-
-    if (!isset($_GET["iid"])) {
-        header("location:viewItems.php");
-        exit;
-    }
-    $iid = $_GET["iid"];
-
-    $sql = "SELECT * FROM item WHERE iid=$iid";
-    $result = $con->query($sql);
-    $row = $result->fetch_assoc();
-
-    if (!$row) {
-        header("location:viewItems.php");
-        exit;
-    }
-    $iName = $row['iName'];
-    $iType = $row['iType'];
-    $mBid = $row['mBid'];
-    $date = $row['date'];
-    $yName = $row['yName'];
-    $yEmail = $row['yEmail'];
-    $info = $row['info'];
-}
-?>
             <label for="itemName">Item Name:</label>
-            <input type="text" id="f1" name="iName" placeholder="Enter the item name" required value="<?php echo $iName; ?>">
+            <input type="text" id="itemName" name="iName" placeholder="Enter the item name" required value="<?php echo $iName; ?>">
 
             <label for="itemType">Item Type:</label>
-            <input type="text" id="f1" name="iType" placeholder="Enter the item type" required value="<?php echo $iType; ?>">
+            <input type="text" id="itemType" name="iType" placeholder="Enter the item type" required value="<?php echo $iType; ?>">
 
             <label for="minimumBid">Minimum Bid:</label>
             <input type="number" id="minimumBid" name="mBid" placeholder="Enter the minimum bid" required value="<?php echo $mBid; ?>">
@@ -109,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="date" id="closingDate" name="date" required value="<?php echo $date; ?>">
 
             <label for="name">Your Name:</label>
-            <input type="text" id="f1" name="yName" placeholder="Enter your name" required value="<?php echo $yName; ?>">
+            <input type="text" id="name" name="yName" placeholder="Enter your name" required value="<?php echo $yName; ?>">
 
             <label for="email">Your Email:</label>
             <input type="email" id="email" name="yEmail" placeholder="Enter your email" required value="<?php echo $yEmail; ?>">
@@ -123,7 +115,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br><br>
-
     <footer>
         <div class="footer-content">
             <p>&copy; 2023 E-Auction. All rights reserved.</p>

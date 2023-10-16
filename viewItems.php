@@ -40,7 +40,7 @@
     </thead>
     <tbody>
     <?php
-        $con = mysqli_connect('localhost', 'root', '', 'test'); // Replace with your database connection details
+        $con = mysqli_connect('localhost', 'root', '', 'onlinebiding'); // Replace with your database connection details
 
         if (!$con) {
             die("Connection failed: " . mysqli_connect_error());
@@ -61,7 +61,7 @@
                 echo "<td>" . $row['yName'] . "</td>";
                 echo "<td>" . $row['yEmail'] . "</td>";
                 echo "<td>" . $row['info'] . "</td>";
-                echo '<td><a href="editItem.php?iid=' . $iid . '">Edit</a> | <a href="deleteItem.php?iid=' . $iid . '" class="delete-btn">Delete</a></td>';
+                echo '<td><a href="editItem.php?iid=' . $iid . '" class="edit-btn">Edit</a> | <a href="deleteItem.php?iid=' . $iid . '" class="delete-btn">Delete</a></td>';
                 echo "</tr>";
             }
         } else {
