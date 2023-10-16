@@ -11,10 +11,10 @@
 <header id="header1">
     <h1 class="logo">E-Auction</h1>
     <div class="navbar">
-    <ul>
-            <li><a href="myProfile.php">My Profile</a></li>  
+        <ul>
+            <li><a href="myProfile.php">My Profile</a></li>
             <li><a href="viewItems.php">Online Bidding</a></li>
-            <li><a href="viewAuctioner.php">Auctioner</a></li>
+            <li><a href="viewAuctioner.php">Auctioneer</a></li>
             <li><a href="aboutUs.php">About Us</a></li>
             <li><a href="contactUs.php">Contact Us</a></li>
             <li><a href="home.php">Log out</a></li>
@@ -29,53 +29,37 @@
             <th>Message ID</th>
             <th>Sender</th>
             <th>Email</th>
-            <th>Message</th><!-- Add a new column for actions -->
+            <th>Message</th>
+            <th>Action</th><!-- Add a new column for actions -->
         </tr>
     </thead>
     <tbody>
     <?php
-        $con = mysqli_connect('localhost', 'root', '', 'onlinebiding'); // Replace with your database connection details
+    $con = mysqli_connect('localhost', 'root', '', 'onlinebidding'); // Replace with your database connection details
 
-        if (!$con) {
-            die("Connection failed: " . mysqli_connect_error());
+    if (!$con) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $sql = "SELECT * FROM contact"; // Replace 'contact' with the actual table name
+    $result = mysqli_query($con, $sql);
+
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $cid = $row['cid'];
+            echo "<tr>";
+            echo "<td>" . $cid . "</td>";
+            echo "<td>" . $row['cname'] . "</td>";
+            echo "<td>" . $row['cemail'] . "</td>";
+            echo "<td>" . $row['cmessage'] . "</td>";
+            echo "<td><a href='editmsg.php?cid={$row['cid']}' class='edit-btn'>Edit</a> | <a href='deleteContact.php?cid={$row['cid']}' class='delete-btn'>Delete</a></td>";
+            echo "</tr>";
         }
+    } else {
+        echo "No messages found";
+    }
 
-        $sql = "SELECT * FROM contact"; // Replace 'items' with the actual table name
-        $result = mysqli_query($con, $sql);
-
-<<<<<<< HEAD
-       if ($result) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $cid = $row['cid'];  // Add this line to retrieve the value of $iid
-                echo "<tr>";
-                echo "<td>" . $cid . "</td>";
-                echo "<td>" . $row['cname'] . "</td>"; // Change column names accordingly
-                echo "<td>" . $row['cemail'] . "</td>";
-                echo "<td>" . $row['cmessage'] . "</td>";
-                echo "<td><a href='editContact.php?cid={$row['cid']}' class='edit-btn'>Edit</a> | <a href='deleteContact.php?cid={$row['cid']}' class='delete-btn'>Delete</a></td>";
-                echo "</tr>";
-=======
-                // Output data of each row
-                while($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>{$row['cid']}</td>";
-                    echo "<td>{$row['cname']}</td>";
-                    echo "<td>{$row['cemail']}</td>";
-                    echo "<td>{$row['cmessage']}</td>";
-                    echo "<td><a href='editmsg.php?cid={$row['cid']}' class='edit-btn'>Edit</a> | <a href='deleteContact.php?cid={$row['cid']}' class='delete-btn'>Delete</a></td>";
-                    echo "</tr>";
-                }
-
-                echo "</table>";
-            } else {
-                echo "No messages found";
->>>>>>> 55697008a8c3047e05ac350e8cab29e7fbc60de1
-            }
-        } else {
-            echo "Error: " . mysqli_error($con);
-        }
-
-        mysqli_close($con);
+    mysqli_close($con);
     ?>
     </tbody>
 </table>
