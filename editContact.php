@@ -32,8 +32,8 @@
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Form submission logic
-            if (isset($_POST['id'])) {
-                $id = $_POST['id'];
+            if (isset($_POST['cid'])) {
+                $cid = $_POST['cid'];
                 $cname = $_POST['cname'];
                 $cemail = $_POST['cemail'];
                 $cmessage = $_POST['cmessage'];
@@ -41,7 +41,7 @@
                 if (empty($cmessage)) {
                     $errorMessage = "Message field is required";
                 } else {
-                    $sql = "UPDATE contact SET cmessage ='$cmessage' WHERE id='$id'";
+                    $sql = "UPDATE contact SET cmessage ='$cmessage' WHERE id='$cid'";
                     $result = $con->query($sql);
 
                     if (!$result) {
@@ -57,13 +57,13 @@
             }
         } else {
             // Form rendering logic
-            if (!isset($_GET["id"])) {
+            if (!isset($_GET["cid"])) {
                 header("location:viewContact.php");
                 exit;
             }
-            $id = $_GET["id"];
+            $cid = $_GET["cid"];
 
-            $sql = "SELECT * FROM contact WHERE id=$id";
+            $sql = "SELECT * FROM contact WHERE cid=$cid";
             $result = $con->query($sql);
             $row = $result->fetch_assoc();
 
