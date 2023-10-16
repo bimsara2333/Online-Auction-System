@@ -26,13 +26,43 @@
 
 
     <div class="profilecontainer">
-        <div class="user-details">
-            <p class="userdetails">Username: <?php echo $username; ?></p>
-            <p class="userdetails">First Name: <?php echo $firstName; ?></p>
-            <p class="userdetails">Last Name: <?php echo $lastName; ?></p>
+    <table id="data-table">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+    </thead>
+    <tbody>
 
-            <a href="editProfile.php" class="contact-button">Edit</a>
-        </div>
+    <?php
+        include('connection.php');
+
+        $sql = "SELECT * FROM user"; // Replace 'items' with the actual table name
+        $result = mysqli_query($con, $sql);
+
+       if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $id = $row['id'];  // Add this line to retrieve the value of $iid
+                echo "<tr>";
+                echo "<td>" . $id . "</td>";
+                echo "<td>" . $row['email'] . "</td>"; // Change column names accordingly
+                echo "<td>" . $row['firstName'] . "</td>";
+                echo "<td>" . $row['lastName'] . "</td>";
+                echo '<td><a href="updateMyProfile.php?id=' . $id . '" class="edit-btn">Edit</a> | <a href="deleteMyProfile.php?id=' . $id . '" class="delete-btn">Delete</a></td>';
+                echo "</tr>";
+            }
+        } else {
+            echo "Error: " . mysqli_error($con);
+        }
+
+        mysqli_close($con);
+    ?>
+    
+    </tbody>
+</table>
     </div>
 
     <div class="profilecontainer">
