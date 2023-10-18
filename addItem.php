@@ -20,7 +20,8 @@ if (isset($_POST['submit'])) {
         $stmt->bind_param('ssdssss', $iName, $iType, $mBid, $date, $yName, $yEmail, $info);
 
         if ($stmt->execute()) {
-            echo "Data Inserted Successfully";
+            // Use JavaScript to display an alert to the user
+            echo '<script>alert("Data Inserted Successfully");</script>';
         } else {
             echo "Error: " . $stmt->error;
         }
@@ -34,6 +35,7 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,6 +43,20 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles3.css">
     <title>E-Auction</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the submit button by its ID
+            var submitButton = document.getElementById("submitBtn");
+
+            // Add a click event listener to the submit button
+            submitButton.addEventListener("click", function (event) {
+                // Display an alert to the user
+                alert("Form submitted successfully!");
+            });
+        });
+    </script>
+
 </head>
 <body>
 
@@ -83,7 +99,7 @@ if (isset($_POST['submit'])) {
         <label for="message">Additional Information:</label>
         <textarea id="message" name="info" placeholder="Enter additional information" required></textarea>
 
-        <button type="submit" name="submit">Place Bid</button>
+        <button type="submit" name="submit" id="submitBtn">Place Bid</button>
     </form>
 </div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

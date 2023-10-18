@@ -16,16 +16,16 @@ if (isset($_GET['id'])) {
 
     if ($result) {
         // User deleted successfully
-        echo "User with ID $user_id has been deleted.";
+        echo "<script>alert('User with ID $user_id has been deleted.');</script>";
     } else {
         // Error deleting the user
-        echo "Error: " . mysqli_error($con);
+        echo "<script>alert('Error: " . mysqli_error($con) . "');</script>";
     }
 
     // Close the database connection
     mysqli_close($con);
 } else {
     // User ID not provided in the URL
-    echo "User ID not provided.";
+    echo "<script>alert('User ID not provided.');</script>";
 }
 ?>

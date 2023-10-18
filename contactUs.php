@@ -16,7 +16,8 @@ if (isset($_POST['cname']) && isset($_POST['cemail']) && isset($_POST['cmessage'
         $stmt->bind_param('sss', $cname, $cemail, $cmessage);
 
         if ($stmt->execute()) {
-            echo "Data Inserted Successfully";
+            // Use JavaScript to display an alert to the user
+            echo '<script>alert("Message Sent Successfully");</script>';
         } else {
             echo "Error: " . $stmt->error;
         }
@@ -37,68 +38,80 @@ if (isset($_POST['cname']) && isset($_POST['cemail']) && isset($_POST['cmessage'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the submit button by its ID
+            var submitButton = document.getElementById("submitBtn");
+
+            // Add a click event listener to the submit button
+            submitButton.addEventListener("click", function (event) {
+                // Display an alert to the user
+                alert("Form submitted successfully!");
+            });
+        });
+    </script>
 </head>
 <body>
-    <h1 class="logo">E-Auction.</h1>
+    
+<h1 class="logo">E-Auction.</h1>
 
-    <div class="navbar">
-    <ul>
-            <li><a href="myProfile.php">My Profile</a></li>  
-            <li><a href="viewItems.php">Online Bidding</a></li>
-            <li><a href="viewAuctioner.php">Auctioner</a></li>
-            <li><a href="aboutUs.php">About Us</a></li>
-            <li><a href="contactUs.php">Contact Us</a></li>
-            <li><a href="home.php">Log out</a></li>
-        </ul>
-    </div>
+<div class="navbar">
+<ul>
+        <li><a href="myProfile.php">My Profile</a></li>  
+        <li><a href="viewItems.php">Online Bidding</a></li>
+        <li><a href="viewAuctioner.php">Auctioner</a></li>
+        <li><a href="aboutUs.php">About Us</a></li>
+        <li><a href="contactUs.php">Contact Us</a></li>
+        <li><a href="home.php">Log out</a></li>
+    </ul>
+</div>
 
-    <h1 class="pagehead">Contact Us</h1><br>
+<h1 class="pagehead">Contact Us</h1><br>
 
-    <div class="container">
-        <div class="contact">
-            <p>We're here to help. If you have any questions, concerns, or feedback, please don't hesitate to reach out to us. We value your input.</p>
-            <br>
-            <section>
-                <h3>Contact Information</h3><br>
-                <p>
-                    <strong>Address:</strong> 123 Auction Way, City, State, Zip Code<br>
-                    <strong>Phone:</strong> (555) 123-4567<br>
-                    <strong>Email:</strong> <a href="mailto:info@yourauctionwebsite.com">info@yourauctionwebsite.com</a>
-                </p>
-            </section>
-            <br>
+<div class="container">
+    <div class="contact">
+        <p>We're here to help. If you have any questions, concerns, or feedback, please don't hesitate to reach out to us. We value your input.</p>
+        <br>
+        <section>
+            <h3>Contact Information</h3><br>
+            <p>
+                <strong>Address:</strong> 123 Auction Way, City, State, Zip Code<br>
+                <strong>Phone:</strong> (555) 123-4567<br>
+                <strong>Email:</strong> <a href="mailto:info@yourauctionwebsite.com">info@yourauctionwebsite.com</a>
+            </p>
+        </section>
+        <br>
 
-            <section>
-                <h3>Customer Support</h3><br>
-                <p>If you require immediate assistance, our customer support team is available during our business hours:</p>
-                <p>
-                    <strong>Business Hours:</strong><br>
-                    Monday-Friday: 9:00 AM - 6:00 PM<br>
-                    Saturday: 10:00 AM - 4:00 PM<br>
-                    Sunday: Closed
-                </p>
-            </section>
-            <br>
+        <section>
+            <h3>Customer Support</h3><br>
+            <p>If you require immediate assistance, our customer support team is available during our business hours:</p>
+            <p>
+                <strong>Business Hours:</strong><br>
+                Monday-Friday: 9:00 AM - 6:00 PM<br>
+                Saturday: 10:00 AM - 4:00 PM<br>
+                Sunday: Closed
+            </p>
+        </section>
+        <br>
 
-            <section>
-                <h3>Contact Form</h3><br>
-                <form method="post">
-                    <label for="cname">Your Name:</label>
-                    <input type="text" id="cname" name="cname" required><br><br>
+    <section>
+        <h3>Contact Form</h3><br>
+        <form method="post">
+            <label for="cname">Your Name:</label>
+            <input type="text" id="cname" name="cname" required><br><br>
 
-                    <label for="cemail">Your Email:</label>
-                    <input type="email" id="cemail" name="cemail" required><br><br>
+            <label for="cemail">Your Email:</label>
+            <input type="email" id="cemail" name="cemail" required><br><br>
 
-                    <label for="cmessage">Message:</label>
-                    <textarea id="cmessage" name="cmessage" rows="5" required></textarea><br><br>
+            <label for="cmessage">Message:</label>
+            <textarea id="cmessage" name="cmessage" rows="5" required></textarea><br><br>
 
-                    <input type="submit" name="submit" value="Submit" class="register_btn">
-                </form>
-            </section>
-            <br>
-
-        </div>
-        <div class="image">
+            <input type="submit" name="submit" value="Submit" class="register_btn" id="submitBtn">
+        </form>
+    </section>
+    
+    <div class="image">
             <img src="./images/contactus.jpg" alt="contactus" class="contactusimg"><br>
             <div class="bb1">
                 <a href="viewContact.php" class="edit-btn" >View Sent messages</a>
@@ -116,5 +129,6 @@ if (isset($_POST['cname']) && isset($_POST['cemail']) && isset($_POST['cmessage'
             </ul>
         </div>
     </footer>
+
 </body>
 </html>

@@ -11,7 +11,6 @@ if (isset($_POST['submit'])) {
     $passwords = $_POST['password'];
     $cpassword = $_POST['confirmPassword'];
 
-
     $fName = htmlspecialchars($fName);
     $lName = htmlspecialchars($lName);
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -27,7 +26,8 @@ if (isset($_POST['submit'])) {
                 VALUES ('$fName', '$lName', '$email', '$hashedPassword')";
 
         if ($con->query($sql) === TRUE) {
-            echo "Profile created successfully";
+            // Use JavaScript to display an alert to the user
+            echo '<script>alert("Profile created successfully");</script>';
             header("Location: afterLogin.php");
         } else {
             echo "Error: " . $sql . "<br>" . $con->error;
@@ -42,6 +42,7 @@ if (isset($_POST['submit'])) {
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,6 +51,19 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the submit button by its ID
+            var submitButton = document.getElementById("submitBtn");
+
+            // Add a click event listener to the submit button
+            submitButton.addEventListener("click", function (event) {
+                // Display an alert to the user
+                alert("Form submitted successfully!");
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -93,7 +107,7 @@ if (isset($_POST['submit'])) {
 
             <a href="login.php" class="link">Already have an account?</a><br>
 
-            <button type="submit" name="submit" class="register_btn">Create Account</button>
+            <button type="submit" name="submit" class="register_btn" id="submitBtn">Create Account</button>
 
         </div>
     </form>

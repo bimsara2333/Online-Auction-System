@@ -18,7 +18,8 @@ if (isset($_POST['submit'])) {
         $stmt->bind_param('sssss', $aname, $anic, $astatus, $aemail, $anumber);
 
         if ($stmt->execute()) {
-            echo "Data Inserted Successfully";
+            // Use JavaScript to display an alert to the user
+            echo '<script>alert("Data Inserted Successfully");</script>';
             header("Location: viewAuctioner.php");
         } else {
             echo "Error: " . $stmt->error;
@@ -34,15 +35,10 @@ $con->close();
 ?>
 
 
+
 <!DOCTYPE html>
 <!-- ... (rest of your HTML code remains the same) ... -->
 Now the code should work correctly, assuming your database connection and table are set up properly.
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +47,20 @@ Now the code should work correctly, assuming your database connection and table 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles3.css">
     <title>E-Auction</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the submit button by its ID
+            var submitButton = document.getElementById("submitBtn");
+
+            // Add a click event listener to the submit button
+            submitButton.addEventListener("click", function (event) {
+                // Display an alert to the user
+                alert("Form submitted successfully!");
+            });
+        });
+    </script>
+
 </head>
 <body>
 
@@ -79,7 +89,7 @@ Now the code should work correctly, assuming your database connection and table 
     <input type="text" id="anic" name="anic" placeholder="Enter the item type" required>
 
     <label for="astatus">Status:</label>
-    <input type="number" id="astatus" name="astatus" placeholder="Enter the minimum bid" required>
+    <input type="text" id="astatus" name="astatus" placeholder="Enter the minimum bid" required>
 
     <label for="aemail">Email:</label>
     <input type="email" id="aemail" name="aemail" required>
@@ -87,7 +97,7 @@ Now the code should work correctly, assuming your database connection and table 
     <label for="anumber">Contact Number:</label>
     <input type="text" id="anumber" name="anumber" placeholder="Enter your name" required>
 
-    <button type="submit" name="submit">Add</button>
+    <button type="submit" name="submit" id="submitBtn">Add</button>
 </form>
 
 </div>

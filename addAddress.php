@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the submit button by its ID
+            var submitButton = document.getElementById("submitBtn");
+
+            // Add a click event listener to the submit button
+            submitButton.addEventListener("click", function (event) {
+                // Display an alert to the user
+                alert("Form submitted successfully!");
+            });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -27,37 +41,39 @@
     <div class="container">
         <div class="contact">
             <section>
-                <?php
-                if (isset($_POST['address1']) && isset($_POST['address2']) && isset($_POST['address3']) && isset($_POST['pcode'])) {
-                    include 'connection.php'; // Include your database connection script.
+            <?php
+if (isset($_POST['address1']) && isset($_POST['address2']) && isset($_POST['address3']) && isset($_POST['pcode'])) {
+    include 'connection.php'; // Include your database connection script.
 
-                    $address1 = $_POST['address1'];
-                    $address2 = $_POST['address2'];
-                    $address3 = $_POST['address3'];
-                    $pcode = $_POST['pcode'];
+    $address1 = $_POST['address1'];
+    $address2 = $_POST['address2'];
+    $address3 = $_POST['address3'];
+    $pcode = $_POST['pcode'];
 
-                    // Create an SQL statement with placeholders for your database table (replace 'your_table' with the actual table name).
-                    $sql = "INSERT INTO address (address1, address2, address3, pcode) VALUES (?, ?, ?, ?)";
-                    $stmt = $con->prepare($sql);
+    // Create an SQL statement with placeholders for your database table (replace 'your_table' with the actual table name).
+    $sql = "INSERT INTO address (address1, address2, address3, pcode) VALUES (?, ?, ?, ?)";
+    $stmt = $con->prepare($sql);
 
-                    if ($stmt) {
-                        // Bind the parameters and their types.
-                        $stmt->bind_param('ssss', $address1, $address2, $address3, $pcode);
+    if ($stmt) {
+        // Bind the parameters and their types.
+        $stmt->bind_param('ssss', $address1, $address2, $address3, $pcode);
 
-                        if ($stmt->execute()) {
-                            echo "Address Inserted Successfully";
-                        } else {
-                            echo "Error: " . $stmt->error;
-                        }
-                        $stmt->close();
-                    } else {
-                        echo "Error: " . $con->error;
-                    }
+        if ($stmt->execute()) {
+            // Use JavaScript to display an alert to the user
+            echo '<script>alert("Address Inserted Successfully");</script>';
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+        $stmt->close();
+    } else {
+        echo "Error: " . $con->error;
+    }
 
-                    // Close your database connection when you're done.
-                    $con->close();
-                }
-                ?>
+    // Close your database connection when you're done.
+    $con->close();
+}
+?>
+
                 <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                     <label for="address1">Address Line 1</label>
                     <input type="text" id="address1" name="address1" required><br><br>
@@ -71,7 +87,7 @@
                     <label for="pcode">Postal Code</label>
                     <input type="text" id="pcode" name="pcode" required><br><br>
 
-                    <input type="submit" value="Add Address" class="register_btn">
+                    <input type="submit" value="Add Address" class="register_btn" id="submitBtn">
                 </form>
             </section>
         </div>

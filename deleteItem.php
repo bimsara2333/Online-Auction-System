@@ -6,7 +6,7 @@ if (isset($_GET['iid'])) {
     $con = mysqli_connect('localhost', 'root', '', 'onlinebiding');
 
     if (!$con) {
-        die("Connection failed: " . mysqli_connect_error());
+        die("<script>alert('Connection failed: " . mysqli_connect_error() . "');</script>");
     }
 
     // Use prepared statement to prevent SQL injection
@@ -17,19 +17,18 @@ if (isset($_GET['iid'])) {
         mysqli_stmt_bind_param($stmt, "i", $iid);
         mysqli_stmt_execute($stmt);
 
-        echo "Item deleted successfully.";
+        echo "<script>alert('Item deleted successfully.');</script>";
 
         mysqli_stmt_close($stmt);
     } else {
-        echo "Error: " . mysqli_error($con);
+        echo "<script>alert('Error: " . mysqli_error($con) . "');</script>";
     }
 
     mysqli_close($con);
 } else {
-    echo "Item ID not provided.";
+    echo "<script>alert('Item ID not provided.');</script>";
 }
 
 // Redirect back to the viewItems.php page after deletion
-header("Location: viewItems.php");
+echo "<script>window.location = 'viewItems.php';</script>";
 exit();
-?>

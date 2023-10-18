@@ -14,14 +14,13 @@ if (isset($_GET['aid'])) {
     $result = mysqli_query($con, $sql);
 
     if ($result) {
-        // Redirect to viewAuctioner.php after successful deletion
-        header("Location: viewAuctioner.php");
-        exit();
+        echo "<script>alert('Deletion successful.');</script>";
+        echo "<script>window.location = 'viewAuctioner.php';</script>";
     } else {
-        echo "Error: " . mysqli_error($con);
+        echo "<script>alert('Error: " . mysqli_error($con) . "');</script>";
     }
 } else {
     // Handle the case where 'name' parameter is not set
-    echo "Invalid request";
+    echo "<script>alert('Invalid request.');</script>";
 }
 ?>

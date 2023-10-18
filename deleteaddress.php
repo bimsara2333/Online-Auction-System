@@ -17,19 +17,18 @@ if (isset($_GET['adid'])) {
         mysqli_stmt_bind_param($stmt, "i", $adid);
         mysqli_stmt_execute($stmt);
 
-        echo "Item deleted successfully.";
+        echo "<script>alert('User ID not provided.');</script>";
 
         mysqli_stmt_close($stmt);
     } else {
-        echo "Error: " . mysqli_error($con);
+        echo "<script>alert('Error: " . mysqli_error($con) . "');</script>";
     }
 
     mysqli_close($con);
 } else {
-    echo "Item ID not provided.";
+    echo "<script>alert('Item ID not provided.');</script>";
 }
 
 // Redirect back to the viewItems.php page after deletion
-header("Location: myprofile.php");
-exit();
+echo "<script>window.location = 'myprofile.php';</script>";
 ?>
